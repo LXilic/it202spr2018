@@ -3,14 +3,49 @@
 <head>
   <title>Homework 8 by A. Ilic</title>
   <meta charset="utf-8">
-  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ 
+ 
+<style>
+.btn-danger {
+    color: #fff;
+    background-color: #42d9f4;
+    border-color: #42d9f4;
+}
+  .h1 {
+      background-color: white;
+      color: #fff;
+  }
+  .p {background-color: white;
+      color: #fff;
+     }
+  </style>
+</head>
+<body>
 
+
+
+<div class="container" id="start">
+  <h2> Find out the the temperature in your area</h1>
+  <p> In order to find out the temperature in the your area please type in your zipcode </p>
+  
+
+</div>
+<div class="container" id="search">
+      <input type="text" id="city" placeholder="Please enter your zip code, if you can't find it follow the steps bellow" required>
+        <button type="button" class="btn btn-danger" id="buttonSearch">Submit</button>
+  <p> If you can't find your zipcode please use the following link </p>
+  <a href="https://www.zip-codes.com/search.asp">https://www.zip-codes.com/search.asp</a>
+</div>
+<div class="container" id="result">
+</div>
 <script>
 document.getElementById("buttonSearch").addEventListener("click", getWeatherDemo);
  function getWeatherDemo() {
