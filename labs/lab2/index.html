@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Movie Search API - Lab2 </title>
+  <title>Movie Search API - Lab2 by Aleksandar ILIC</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -31,7 +31,7 @@
     margin-top: 100px;
     }
   .btn {
-      margin-top:20px;
+      margin-top:2px;
       background-color: #333;
       color: ##4286f4;
       border-radius: 4px;
@@ -161,7 +161,7 @@ $.ajax({
                         
              $("#results").text("");
                         
-         // clone template
+         // template for clone
     var clone = $("#template").clone();
                         
     clone.find(".card-body h5").text(v.display_title);
@@ -174,7 +174,7 @@ $.ajax({
    clone.attr("id", "card" + i);
                         
                         
-  // find/replace anchor text
+  // replace the anchor text
             
       $("#results").append(clone);
      });
