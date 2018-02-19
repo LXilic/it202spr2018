@@ -20,7 +20,7 @@
     display: none;
   }
   #search, #results {
-    padding-right: 10px;
+    padding-left: 20%;
     display: none;
   }
   #middle {
@@ -50,13 +50,14 @@
         
         <div class="row form-group form-inline" id="middle">
             <div class="container" id="home">
+                <p> Search for you favorite movie reviews using our multiple screen app</p>
                 <button id="start" class="btn btn-primary" onclick="switchScreen('home')">Get Started</button>
             </div>
         </div>
         
         <div class="row form-group form-inline" id="middle">
             <div class="container" id="search">
-                <input type="text" id="query" class="form-control" placeholder="search">
+                <input type="text" id="query" class="form-control" placeholder="Search for you favorite movies">
                 <button id="btnSearch" class="btn btn-primary" onclick="switchScreen('search')">Search</button>
             </div>
         </div>
