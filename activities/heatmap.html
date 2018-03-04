@@ -1,127 +1,155 @@
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Heatmaps</title>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
+
+<head>
+  <meta charset="utf-8">
+  <title>Heatmaps</title>
+  <style>
+    /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #floating-panel {
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        text-align: center;
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
-      }
-      #floating-panel {
-        background-color: #fff;
-        border: 1px solid #999;
-        left: 25%;
-        padding: 5px;
-        position: absolute;
-        top: 10px;
-        z-index: 5;
-      }
-    </style>
-  </head>
 
-  <body>
-    <div id="floating-panel">
-      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-      <button onclick="changeGradient()">Change gradient</button>
-      <button onclick="changeRadius()">Change radius</button>
-      <button onclick="changeOpacity()">Change opacity</button>
-    </div>
-    <div id="map"></div>
-    <script>
+    #map {
+      height: 100%;
+    }
 
-      // This example requires the Visualization library. Include the libraries=visualization
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
+    /* Optional: Makes the sample page fill the window. */
 
-      var map, heatmap;
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
 
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13,
-          center: {lat: 41.8704, lng: -87.6675},
-          mapTypeId: 'satellite'
-        });
-   
-        heatmap = new google.maps.visualization.HeatmapLayer({
-          data: getPoints(),
-          map: map
-        });
-      }
+    #floating-panel {
+      position: absolute;
+      top: 10px;
+      left: 25%;
+      z-index: 5;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #999;
+      text-align: center;
+      font-family: 'Roboto', 'sans-serif';
+      line-height: 30px;
+      padding-left: 10px;
+    }
 
-      function toggleHeatmap() {
-        heatmap.setMap(heatmap.getMap() ? null : map);
-      }
+    #floating-panel {
+      background-color: #fff;
+      border: 1px solid #999;
+      left: 25%;
+      padding: 5px;
+      position: absolute;
+      top: 10px;
+      z-index: 5;
+    }
+  </style>
+</head>
 
-      function changeGradient() {
-        var gradient = [
-          'rgba(0, 255, 255, 0)',
-          'rgba(0, 255, 255, 1)',
-          'rgba(0, 191, 255, 1)',
-          'rgba(0, 127, 255, 1)',
-          'rgba(0, 63, 255, 1)',
-          'rgba(0, 0, 255, 1)',
-          'rgba(0, 0, 223, 1)',
-          'rgba(0, 0, 191, 1)',
-          'rgba(0, 0, 159, 1)',
-          'rgba(0, 0, 127, 1)',
-          'rgba(63, 0, 91, 1)',
-          'rgba(127, 0, 63, 1)',
-          'rgba(191, 0, 31, 1)',
-          'rgba(255, 0, 0, 1)'
-        ]
-        heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
-      }
+<body>
+  <div id="floating-panel">
+    <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+    <button onclick="changeGradient()">Change gradient</button>
+    <button onclick="changeRadius()">Change radius</button>
+    <button onclick="changeOpacity()">Change opacity</button>
+  </div>
+  <div id="map"></div>
+  <script>
+    // This example requires the Visualization library. Include the libraries=visualization
+    // parameter when you first load the API. For example:
+    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
 
-      function changeRadius() {
-        heatmap.set('radius', heatmap.get('radius') ? null : 20);
-      }
+    var map, heatmap;
 
-      function changeOpacity() {
-        heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
-      }
+    function initMap() {
 
-      // Heatmap data: 500 Points
-      function getPoints() 
-      {
-        var url = 'https://data.cityofchicago.org/resource/787j-mys9.json';
-        var arr = [];
-        $.get(url).done(function(data)) {
-        console.log(data);
-        $.each(data, function(i, v))
-        {
-        //console.log(v.lattiude + "," + v.longitutde);
-        var lat = parseFloat(v.latitude);
-        var lon = parseFloat(v.longitutde);
-        var coord = new google.maps.LatLng(lat, lon);
-        arr.push(coord);
-      });
-      });
-      return arr;
-      }
+      // create array to hold the point data we'll pass to the heatmap layer
+      var arrayPoints = [];
+
+
+      $.get("https://data.cityofchicago.org/resource/787j-mys9.json")
+        .done(function(response) {
+          
+          // let's see what we've got
+          console.log(response);
+          
+          // create our map *after* we get the data so we can use the value of the first record to center the table
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 13,
+            center: { lat: parseFloat(response[0].latitude), lng: parseFloat(response[0].longitude) },
+            mapTypeId: 'satellite'
+          });
+
+
+
+          // loop through the response data
+          $.each(response, function(i, v) {
+            
+            // console.log(v);
+            
+            // to avoid other problems, we only want to add to our points if the record has lat and lng values
+            if (v.hasOwnProperty("latitude") && v.hasOwnProperty("longitude")) {
+              arrayPoints.push(
+                  // push a new instance of a LatLng into the array
+                  new google.maps.LatLng(parseFloat(v.latitude), parseFloat(v.longitude))
+              );
+            }
+          })
+
+          // now that we have our data, we can use it to create the HeatmapLayer
+          heatmap = new google.maps.visualization.HeatmapLayer({
+            data: arrayPoints,
+            map: map
+          });
+
+
+        })
+
+    }
+
+
+
+    function toggleHeatmap() {
+      heatmap.setMap(heatmap.getMap() ? null : map);
+    }
+
+    function changeGradient() {
+      var gradient = [
+        'rgba(0, 255, 255, 0)',
+        'rgba(0, 255, 255, 1)',
+        'rgba(0, 191, 255, 1)',
+        'rgba(0, 127, 255, 1)',
+        'rgba(0, 63, 255, 1)',
+        'rgba(0, 0, 255, 1)',
+        'rgba(0, 0, 223, 1)',
+        'rgba(0, 0, 191, 1)',
+        'rgba(0, 0, 159, 1)',
+        'rgba(0, 0, 127, 1)',
+        'rgba(63, 0, 91, 1)',
+        'rgba(127, 0, 63, 1)',
+        'rgba(191, 0, 31, 1)',
+        'rgba(255, 0, 0, 1)'
+      ]
+      heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+    }
+
+    function changeRadius() {
+      heatmap.set('radius', heatmap.get('radius') ? null : 20);
+    }
+
+    function changeOpacity() {
+      heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+    }
   </script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK7PMrvyEjrP7IN-ksE9mdMomDFw5popA&libraries=visualization&callback=initMap">
-    </script>
-  </body>
+  
+  <!-- jQuery library -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+  <!--Google Maps library-->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNbKAKYGXRa79_9bIz0Nyz_H2ob0NC0BY&libraries=visualization&callback=initMap">
+  </script>
+</body>
+
 </html>
