@@ -42,6 +42,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
+            <li class ="nav-item">
+              <a class ="nav-link js-scroll-trigger" href="#search">Search for schools</a>
+              </li>
+            </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#features">Features</a>
             </li>
@@ -64,6 +68,46 @@
         </div>
       </div>
     </nav>
+  <div id="centered"></div>
+        
+        <div class="row form-group form-inline" id="middle">
+            <div class="container" id="home">
+                <p> Search for you favorite movie reviews using our multiple screen app!</p>
+                <p> Click below to get started</p>
+                <button id="start" class="btn btn-primary" onclick="switchScreen('home')">Get Started</button>
+            </div>
+        </div>
+        
+        <div class="row form-group form-inline" id="middle">
+            <div class="container" id="search">
+                <input type="text" id="query" class="form-control" placeholder="Search for you favorite movies">
+                <button id="btnSearch" class="btn btn-primary" onclick="switchScreen('search')">Search</button>
+            </div>
+        </div>
+        
+        <div id="centered"></div>
+        
+        <div class="row form-group form-inline" id="middle">
+        <div id="results"></div>
+        </div>
+    
+    <div class="container" id="results"></div>
+    <div class="container">
+            <div id="template" class="card" style="width: ">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p class="card-text">sample text for card title.</p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+          </div>
+      </div>
+       <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
 
 
     <!-- Carousel -->
@@ -256,6 +300,7 @@
     </section>
     
     <style>
+    
       body {
         font: 400 15px Lato, sans-serif;
         line-height: 1.8;
@@ -351,6 +396,42 @@
   .dropdown-menu li a:hover {
       background-color: red !important;
   }
+ 
+ 
+ 
+ 
+ 
+   #home {
+    display: none;
+  }
+  #template {
+    display: none;
+  }
+  #search, #results {
+    padding-left: auto;
+    display: none;
+  }
+  #middle {
+    text-align: center;
+    margin: auto;
+    }
+  #centered {
+    margin-top: 100px;
+    }
+  .btn {
+      margin-top:2px;
+      background-color: #333;
+      color: ##4286f4;
+      border-radius: 4px;
+      transition: .7s;
+  }
+  .btn:hover, .btn:focus {
+      border: 0px solid #4286f4;
+      background-color: #fff;
+      color: #4286f4;
+  }
+  
+ 
  
     </style>
     
@@ -450,4 +531,111 @@
     <script src="js/agency.min.js"></script>
   </body>
 
+<!---------------------Added -->
+ 
+<script>
+// Built by LucyBot. www.lucybot.com
+// Built by LucyBot. www.lucybot.com
+/*
+var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
+url += '?' + $.param({
+  'api-key': "46d0c22ab45543df9c71145b89c93b15"
+});
+$.ajax({
+  url: url,
+  method: 'GET',
+}).done(function(result) {
+  console.log(result);
+}).fail(function(err) {
+  throw err;
+  
+});
+*/
+  function loadResponse(response) {
+      $("#results").append("<p> " + "number of results: " +  response['results'].length + "<p>");
+      $.each(response['results'], function(i, val) {
+      $("#results").append("<p> " + val['display_title'] + "<p>");
+      });
+       $("#results").append("<button type=\"button\" id=\"restart\">Search Again</button>");
+       $('#restart').on("click", function() {
+       $('#results').hide();
+       $('#search').show();
+      });
+      }
+      $('#start').on("click", function() {
+      $('#home').hide();
+      $('#search').show();
+      });
+      $(document).ready(function() {
+       $('#home').show();
+       $('#search').hide();
+        $('#results').hide();
+      });
+
+    $(document).ready(function() {
+      document.getElementById("home").style.display = "block";
+      });
+            
+  // switchScreen function             
+  function switchScreen(id) {
+    var screen = id;
+    if(screen == "home") {
+    document.getElementById("home").style.display = "none";
+    document.getElementById("search").style.display = "block";
+    }
+    else {
+    document.getElementById("search").style.display = "none";
+    document.getElementById("results").style.display = "block";
+    }
+  }
+            
+            
+  // doSearch function 
+  function doSearch() {
+       // Built by LucyBot. www.lucybot.com
+  var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
+  url += '?' + $.param({
+    'api-key': "46d0c22ab45543df9c71145b89c93b15",
+    'query': $("#query").val()
+    });
+    $.ajax({
+    url: url,
+    method: 'GET',
+                
+    }).done(function(response) {
+            // goes through all the results       
+          $.each(response.results, function(i,v) {
+                        
+         console.log(response);
+                        
+             $("#results").text("");
+                        
+         // template for clone
+    var clone = $("#template").clone();
+                        
+    clone.find(".card-body h5").text(v.display_title);
+    clone.attr("id", "card" + i);
+                        
+  clone.find(".card-body h6").text("Opens on " + v.opening_date);
+  clone.attr("id", "card" + i);
+                        
+   clone.find(".card-body p").text(v.summary_short);
+   clone.attr("id", "card" + i);
+                        
+                        
+  // replace the anchor text
+            
+      $("#results").append(clone);
+     });
+                    
+    }).fail(function(err) {
+                    
+    throw err;
+      });
+  }
+  // calls the doSearch function
+ $("#btnSearch").on("click", doSearch);
+        
+        </script>
+<script>
 </html>
