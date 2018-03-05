@@ -130,7 +130,7 @@
          <div class="container home text-center" id="home1">
       <div>
        <h2> Location! Location! Location!</h2>
-        <p>When you're looking for a new home, location and along with school district is the most important factor!</br></p>
+        <p>When you're looking for a new home, the most important factor is the location and school district!</br></p>
         <p> Click below to get started with your search for near by schools</p>
          <button class="mdc-button mdc-button--raised mdc-ripple-surface"
             data-mdc-auto-init="MDCRipple" id="start_button">
@@ -140,7 +140,7 @@
     </div>
     <div class="container home text-center" id="home2">
       <div class="text-center">
-        <h4 class="mdc-typography--display1">Below are different school types, please select one or multiple</h2>
+        <h4 class="mdc-typography--display1" id="btxt">Below are different school types, please select one or multiple</h2>
         <div class="form-group" style="height: 100%;">
           <select multiple class=" mdc-list" id= "dynamic-list" style="height: 100%; overflow-y: hidden;"></select>
         </div>
@@ -313,7 +313,7 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5_qjhbLhUDlCJLUP-Fx6MWzaCg6WUlZM">
     </script>
     </section>
--->
+
 
 
     <!-- Image Showcases -->
@@ -400,6 +400,9 @@
     </section>
     
     <style>
+    #btxt {
+      color: #00b5e2;
+    }
     #container home text-center {
       bottom: 100px;
     }
@@ -459,7 +462,7 @@
       background-color: #fff;
       color: #000;
   }
-  .modal-header, h4, .close {
+  .modal-header, .close {
       background-color: #333;
       color: #fff !important;
       text-align: center;
@@ -640,6 +643,7 @@
     letter-spacing: normal;
     text-decoration: inherit;
     text-transform: inherit;
+    background-color: #f8f9fa;
 }
   .mdc-list {
     border-color: #00b5e2;
