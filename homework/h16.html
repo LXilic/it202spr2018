@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Restaurant Locator</title>
+    </head>
+    <body>
+        <h>Restaurant Locator</h>
+        <p>Try our all new restaurant locator !!</p>
+        <button id="search">Search for Restaurant</button>
+        <ol id="result"></ol>
+    </body>
+    
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $("#search").click(function(){
+            $("#result").empty();
+            var db = new Dexie("AppDB");
+            db.version(1).stores({Restaurants: '++id, name, cuisine'
+            });
+            db.Restaurants.add({name: "Psistaria Greek Taverna",cuisine: "Greek"
+            })
+            db.Restaurants.add({name: "Sabatinos", cuisine: "Italy"
+            })
+            db.Restaurants.add({name: "Big Bowl Chinese and Thai",
+                cuisine: "Thai"})
+            
+            db.Restaurants.where('cuisine').noneOf(['Thai']).each(function(restaurant) {
+                $("#result").append('<li>Name: ' + restaurant.name + ", Cuisine: " + restaurant.cuisine + '</li>');
+            });
+        })
+    </script>
+</html>

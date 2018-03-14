@@ -166,10 +166,8 @@
             var el = e.target;
             if (el.tagName.toLowerCase() == 'option' && el.parentNode.hasAttribute('multiple')) {
                 e.preventDefault();
-                // toggle selection
                 if (el.hasAttribute('selected')) el.removeAttribute('selected');
                 else el.setAttribute('selected', '');
-                // hack to correct buggy behavior
                 var select = el.parentNode.cloneNode(true);
                 el.parentNode.parentNode.replaceChild(select, el.parentNode);
             }
@@ -283,7 +281,6 @@
                 var infowindow = new google.maps.InfoWindow({
                   content: contentString
                 });
-                //var iconMarker = getIcon(v.school_type);
                 var marker = new google.maps.Marker({
                   position: location,
                   icon: getIcon(v.school_type),
@@ -299,9 +296,6 @@
           $('#home3').show();
               });
         });
-        
-        
-        
         $('#back_div').click(function() {
           $("#home3").hide();
           $("#home2").show(function(){
