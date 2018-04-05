@@ -49,12 +49,17 @@
                     console.log("collision");
 
                     //TODO:  add vibration upon collision
-
+                      window.navigator.vibrate(200);
                     //TODO:  add speechSynthesis notification of collision
-
+                    
                 }
 
-
+                    var synth = window.speechSynthesis;
+                    var utter = new SpeechSynthesisUtterance("Collision");
+                    utter.voice = synth.getVoices()[12];
+                    synth.speak(utter);
+                }
+               
                 window.requestAnimationFrame(draw);
             }
 
