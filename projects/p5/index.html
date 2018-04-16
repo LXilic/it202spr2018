@@ -36,7 +36,7 @@
       .then((stream) => {
         player.srcObject = stream;
       });
-  function getImageData(){
+    function getImageData(){
     requestBody= {
       "requests": [{
         "image": {
@@ -58,50 +58,50 @@
       console.log(response);
       
       var data = response;
-          // TODO - handle "no face" condition
-                  var faceVertices = response.responses[0].faceAnnotations[0].boundingPoly.vertices;
-                  console.log(faceVertices);
+      // TODO - handle "no face" condition
+      var faceVertices = response.responses[0].faceAnnotations[0].boundingPoly.vertices;
+      console.log(faceVertices);
                   
-                  // find corners
-                  var topLeft = faceVertices[0];
-                  var bottomRight = faceVertices[2];
-                  console.log(bottomRight, bottomRight.x, topLeft, topLeft.x);
+      // find corners
+      var topLeft = faceVertices[0];
+      var bottomRight = faceVertices[2];
+      console.log(bottomRight, bottomRight.x, topLeft, topLeft.x);
                   
-                  // determine width and height for cropping
-                  var faceWidth = bottomRight.x - topLeft.x;
-                  var faceHeight = bottomRight.y - topLeft.y;
-                  var sourceX = topLeft.x;
-                  var sourceY = topLeft.y;
-                  var destWidth = faceWidth;
-                  var destHeight = faceHeight;
-                   // check to see whether we need to start a new row or column
-                  if (nextX > collageCanvas.width) {
-                    nextX = 0;
-                    nextY += faceHeight;
-                  }
+     // determine width and height for cropping
+      var faceWidth = bottomRight.x - topLeft.x;
+      var faceHeight = bottomRight.y - topLeft.y;
+      var sourceX = topLeft.x;
+      var sourceY = topLeft.y;
+      var destWidth = faceWidth;
+      var destHeight = faceHeight;
+    // check to see whether we need to start a new row or column
+       if (nextX > collageCanvas.width) {
+       nextX = 0;
+       nextY += faceHeight;
+      }
                   
-                  if (nextY + faceHeight > collageCanvas.height) {
-                    // make the collage taller as needed
-                    //   but resizing clears it, so we need to
-                    //   save and redraw the data
+     if (nextY + faceHeight > collageCanvas.height) {
+     // make the collage taller as needed
+     //   but resizing clears it, so we need to
+     //   save and redraw the data
                     
-                    var imgData=collageContext.getImageData(0,0,collageCanvas.width, collageCanvas.height);
-                    collageCanvas.height += faceHeight;
-                    collageContext.putImageData(imgData,0,0);
-                  }                  
+     var imgData=collageContext.getImageData(0,0,collageCanvas.width, collageCanvas.height);
+     collageCanvas.height += faceHeight;
+     collageContext.putImageData(imgData,0,0);
+     }                  
        
-                  collageContext.drawImage(canvas, sourceX, sourceY, faceWidth, faceHeight, nextX, nextY, faceWidth, faceHeight); 
-                  nextX += faceWidth;
+     collageContext.drawImage(canvas, sourceX, sourceY, faceWidth, faceHeight, nextX, nextY, faceWidth, faceHeight); 
+     nextX += faceWidth;
                 
                 
-                //getImageData();
+      //getImageData();
       //$("#imageData").html("<pre>" + JSON.stringify(response) + "</pre>");
-    })
-    .fail(function(err) {
+     })
+     .fail(function(err) {
       throw err;
-    });
+     });
     
-  }
+     }
   
   
   </script>
