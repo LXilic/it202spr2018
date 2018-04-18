@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,7 +21,7 @@
               <div class="mdc-top-app-bar__row">
                 <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
                   <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
-                  <span class="mdc-top-app-bar__title">My Cool App</span>
+                  <span class="mdc-top-app-bar__title">Aleksandar ILIC - My Cool App</span>
                 </section>
               </div>
             </header>
@@ -133,9 +132,6 @@
         </script>
     
 
-
-    
-    
     
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -148,51 +144,52 @@
     <script>
     $("#doSearch").on("click", getAsteroidData);
     
-    
-    function getAsteroidData () {
-
+    getAsteroidData();
+    function getAsteroidData () 
+    {
     
       $.get("https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=nxtMjihbq1ZPBiPcUKOym6IlVMvD4bEeNvJTbS1l", 
-          function(response) {
+          function(response) 
+          {
+       
             var clone, separator, secondaryText;
             var separator
             
             
-            
+            //TODO:
             $("#resultList li").not("#template").remove();
-            $.each(response, function(k,v) {
+            $.each(response["near_earth_objects"], function(k,v) {
+           
               $.each(v, function(i,v2) {
                 
+                
                 clone = $("#template").clone().removeClass("hidden");
-                clone.find(".mdc-list-item__text").text("Asteroid Name: " + TODO: display name + " Date recorded: " + TODO: display date);
-
-                // secondary text
+           
+                clone.find(".mdc-list-item__text").text("Asteroid Name: " + v2.name + " Date recorded: " + k);
+         
                 secondaryText = $("<span>").addClass("mdc-list-item__secondary-text");
                 secondaryText.text("Estimated diameter in meters: " 
-                  + TODO:  display min estimated diameter in meters 
+                  + v2.estimated_diameter.meters.estimated_diameter_min    //TODO:  display min estimated diameter in meters 
                   + " to "
-                  + TODO:  display max estimated diameter in meters );
+                  + v2.estimated_diameter.meters.estimated_diameter_max );
                 clone.find(".mdc-list-item__text").append(secondaryText);
+            
                 
-                // link to nasa_jpl_url
-                
-                clone.find("a").attr("href", TODO: set href to the nasa jpl url);
+                clone.find("a").attr("href", v2.nasa_jpl_url);
                 
                 var separator = $("<li>").addClass("mdc-list-divider").attr("role","separator");
                 $("#resultList").append(separator);
                 $("#resultList").append(clone);
               
-              
-                
-              });
+              }); 
               
               
-            });
+            }); 
               
             
           });
           
-          
+   
     }
     
     </script>
