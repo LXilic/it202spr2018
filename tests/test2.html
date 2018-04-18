@@ -1,22 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-    
         <title>Alex ILIC</title>
-    
-        <!-- Bootstrap core CSS -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Bootstrap core JavaScript -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
-        <script>
+    </head>
+    <body>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+      <script>
         $(document).ready(function() {
             displayResults();
         });
@@ -37,7 +26,7 @@
     
     function showResults(response) {
       $.each(response, function(i, employee) {
-        if(employee.full_or_part_time == "P"){
+        if(employee.salary_or_hourly == "Salary"){
                   var testing = "<p>Name : " + employee.name + " Job Title: " + employee.job_titles + "</p> <br>";;
                 $(testing).appendTo("body");
         }
