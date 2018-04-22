@@ -1,0 +1,364 @@
+
+<!--
+ Copyright 2016 Google Inc.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="canonical" href="https://weather-pwa-sample.firebaseapp.com/final/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Schools and crime map</title></title>
+
+  <link rel="stylesheet" type="text/css" href="styles/inline.css">
+
+  <link rel="manifest" href="/manifest.json">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Weather PWA">
+  <link rel="apple-touch-icon" href="./images/icons/icon-152x152.png">
+  <meta name="msapplication-TileImage" content="./images/icons/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#2F3BA2">
+</head>
+<body>
+
+  <header class="header">
+    <h1 class="header__title">Schools and crime map</h1>
+    <button id="butRefresh" class="headerButton" aria-label="Refresh"></button>
+    <button id="butAdd" class="headerButton" aria-label="Add"></button>
+  </header>
+
+  <main class="main">
+      
+
+    <!-- Icons Grid -->
+    <section id="search for schools" class="features-icons bg-light text-center">
+         <div class="container home text-center" id="home1">
+      <div>
+       <h2> Location! Location! Location!</h2>
+        <p>When you're looking for a new home, the most important factor is the location and school district!</br></p>
+        <p> Click below to get started with your search for near by schools</p>
+         <button class="mdc-button mdc-button--raised mdc-ripple-surface"
+            data-mdc-auto-init="MDCRipple" id="start_button">
+          Lets Start
+          </button>
+      </div>
+    </div>
+    <div class="container home text-center" id="home2">
+      <div class="text-center">
+        <h4 class="mdc-typography--display1" id="btxt">Below are different school types, please select one or multiple</h2>
+        <div class="form-group" style="height: 100%;">
+          <select multiple class=" mdc-list" id= "dynamic-list" style="height: 100%; overflow-y: hidden;"></select>
+        </div>
+        <button class="mdc-button mdc-button--raised mdc-ripple-surface"
+          data-mdc-auto-init="MDCRipple" id="done_select_schools" style="margin: 10px;">
+          Next
+        </button>
+      </div>
+    </div>
+    <div class="home" id="home3">
+      <div class="text-center" id="back_div">
+        <button class="mdc-button mdc-button--raised mdc-ripple-surface "
+              data-mdc-auto-init="MDCRipple" id="back_button">
+            back
+        </button>
+      </div>
+      <div id="map"></div>
+    </div>
+   
+    <script>
+        var selected_School_Types = "";
+        window.onmousedown = function (e) {
+            var el = e.target;
+            if (el.tagName.toLowerCase() == 'option' && el.parentNode.hasAttribute('multiple')) {
+                e.preventDefault();
+                if (el.hasAttribute('selected')) el.removeAttribute('selected');
+                else el.setAttribute('selected', '');
+                var select = el.parentNode.cloneNode(true);
+                el.parentNode.parentNode.replaceChild(select, el.parentNode);
+            }
+        }
+        $(document).ready(function(){
+          $("#home1").show();
+        })
+        $("#start_button").click(function(){
+          $("#home1").hide();
+          $("#home2").show(function(){
+            getSchoolsType();
+          });
+        });
+        function getSchoolsType(){
+          $.ajax({
+              url: "https://data.cityofchicago.org/resource/76dk-7ieb.json?$select=school_type&$group=school_type",
+              method: 'GET',
+            }).done(function(result) {
+              displayhome2(result);
+              });
+        }
+        function getIcon(typeSchool){
+          var path ="img/"
+          switch(typeSchool){
+            case "Career academy":
+              path += "1.png"
+              break;
+          case "Charter":
+              path += "2.png"
+              break;
+          case "Citywide-Option":
+              path += "3.png"
+              break;
+          case "Classical":
+              path += "4.png"
+              break;
+          case "Contract":
+              path += "5.png"
+              break;
+          case "Magnet":
+              path += "6.png"
+              break;
+          case "Military academy":
+              path += "7.png"
+              break;
+          case "Neighborhood":
+              path += "8.png"
+              break;
+          case "Regional gifted center":
+              path += "9.png"
+              break;
+          case "Selective enrollment":
+              path += "10.png"
+              break;
+          case "Small":
+              path += "11.png"
+              break;
+          case "Special Education":
+              path += "12.png"
+              break;
+          }
+          return path;
+        }
+        
+        function displayhome2(schoolTypes){
+          document.getElementById("dynamic-list").setAttribute('size', schoolTypes.length);
+          $.each(schoolTypes, function(i,v){
+            addItemToSchoolList(v.school_type);
+          });
+        }
+        
+        function addItemToSchoolList(schoolType){
+            var select = document.getElementById("dynamic-list");
+            var li = document.createElement('option');
+            li.setAttribute('id',"schoolType");
+            li.setAttribute('class', "mdc-list-item text-center");
+            li.appendChild(document.createTextNode(schoolType));
+            select.appendChild(li);
+        }
+        
+        $('#done_select_schools').click(function(){
+          var schoolTypes = $("#dynamic-list option:selected");
+          selected_School_Types = "";
+          $.each(schoolTypes, function(i,v){
+            if(i == 0)
+              selected_School_Types += "'" +v.text +"'";
+            else
+              selected_School_Types += ",'" +v.text + "'";
+          });
+          console.log(selected_School_Types);
+          var url1 = "https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ("+  selected_School_Types+ ")";
+          $.ajax({
+              url: url1,
+              method: 'GET',
+            }).done(function(result) {
+              
+              var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: {lat: 41.8781,lng: -87.6298}
+              });
+              
+              $.each(result, function(i, v) {
+                var location = {lat: parseFloat(v['school_latitude']), lng: parseFloat(v['school_longitude'])};
+                var contentString = '<div id="content">'+
+                                      '<div id="siteNotice"></div>'+
+                                      '<h5 id="firstHeading">'+v['long_name']+'</h5>'+
+                                      '<p>'+v['address'] +', '+v['location_city']+', '+'IL'+', '+v['location_zip'] +'</p>'+
+                                      '<p><b>School Type: </b>' + v['school_type'] + ',  <b>Rating: </b>'+v['overall_rating']+'</p>'+
+                                      '<p><a href="'+ v['website']+'">School Website</a></p>'+
+                                    '</div>';
+                var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+                });
+                var marker = new google.maps.Marker({
+                  position: location,
+                  icon: getIcon(v.school_type),
+                  map: map,
+                  title: 'Chicago'
+                });
+                marker.addListener('click', function() {
+                  infowindow.open(map, marker);
+                });
+              });
+              
+          $('#home2').hide();
+          $('#home3').show();
+              });
+        });
+        $('#back_div').click(function() {
+          $("#home3").hide();
+          $("#home2").show(function(){
+            getSchoolsType();
+          });
+        });
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=key=AIzaSyCK7PMrvyEjrP7IN-ksE9mdMomDFw5popA">
+    </script>
+    </section>
+
+
+    <div class="card cardTemplate weather-forecast" hidden>
+      <div class="city-key" hidden></div>
+      <div class="card-last-updated" hidden></div>
+      <div class="location"></div>
+      <div class="date"></div>
+      <div class="description"></div>
+      <div class="current">
+        <div class="visual">
+          <div class="icon"></div>
+          <div class="temperature">
+            <span class="value"></span><span class="scale">°F</span>
+          </div>
+        </div>
+        <div class="description">
+          <div class="humidity"></div>
+          <div class="wind">
+            <span class="value"></span>
+            <span class="scale">mph</span>
+            <span class="direction"></span>°
+          </div>
+          <div class="sunrise"></div>
+          <div class="sunset"></div>
+        </div>
+      </div>
+      <div class="future">
+        <div class="oneday">
+          <div class="date"></div>
+          <div class="icon"></div>
+          <div class="temp-high">
+            <span class="value"></span>°
+          </div>
+          <div class="temp-low">
+            <span class="value"></span>°
+          </div>
+        </div>
+        <div class="oneday">
+          <div class="date"></div>
+          <div class="icon"></div>
+          <div class="temp-high">
+            <span class="value"></span>°
+          </div>
+          <div class="temp-low">
+            <span class="value"></span>°
+          </div>
+        </div>
+        <div class="oneday">
+          <div class="date"></div>
+          <div class="icon"></div>
+          <div class="temp-high">
+            <span class="value"></span>°
+          </div>
+          <div class="temp-low">
+            <span class="value"></span>°
+          </div>
+        </div>
+        <div class="oneday">
+          <div class="date"></div>
+          <div class="icon"></div>
+          <div class="temp-high">
+            <span class="value"></span>°
+          </div>
+          <div class="temp-low">
+            <span class="value"></span>°
+          </div>
+        </div>
+        <div class="oneday">
+          <div class="date"></div>
+          <div class="icon"></div>
+          <div class="temp-high">
+            <span class="value"></span>°
+          </div>
+          <div class="temp-low">
+            <span class="value"></span>°
+          </div>
+        </div>
+        <div class="oneday">
+          <div class="date"></div>
+          <div class="icon"></div>
+          <div class="temp-high">
+            <span class="value"></span>°
+          </div>
+          <div class="temp-low">
+            <span class="value"></span>°
+          </div>
+        </div>
+        <div class="oneday">
+          <div class="date"></div>
+          <div class="icon"></div>
+          <div class="temp-high">
+            <span class="value"></span>°
+          </div>
+          <div class="temp-low">
+            <span class="value"></span>°
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="dialog-container">
+    <div class="dialog">
+      <div class="dialog-title">Add new city</div>
+      <div class="dialog-body">
+        <select id="selectCityToAdd">
+          <!-- Values map to Yahoo Weather API Where On Earth Identifiers (WOEIDs).
+               https://developer.yahoo.com/weather/documentation.html#req -->
+          <option value="2357536">Austin, TX</option>
+          <option value="2367105">Boston, MA</option>
+          <option value="2379574">Chicago, IL</option>
+          <option value="2459115">New York, NY</option>
+          <option value="2475687">Portland, OR</option>
+          <option value="2487956">San Francisco, CA</option>
+          <option value="2490383">Seattle, WA</option>
+        </select>
+      </div>
+      <div class="dialog-buttons">
+        <button id="butAddCity" class="button">Add</button>
+        <button id="butAddCancel" class="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="loader">
+    <svg viewBox="0 0 32 32" width="32" height="32">
+      <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
+    </svg>
+  </div>
+
+  <script src="scripts/app.js" async></script>
+
+</body>
+</html>
