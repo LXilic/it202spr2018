@@ -96,7 +96,9 @@ body {
   transition: transform 0.233s cubic-bezier(0, 0, 0.21, 1) 0.1s;
   transition: transform 0.233s cubic-bezier(0, 0, 0.21, 1) 0.1s, -webkit-transform 0.233s cubic-bezier(0, 0, 0.21, 1) 0.1s;
   z-index: 1000; }
-  .header .headerButton {
+  .headerButton {
+    color: #00b5e2;
+    bottom: 10px;
     width: 24px;
     height: 24px;
     margin-right: 16px;
@@ -108,9 +110,13 @@ body {
     border: none;
     outline: none;
     cursor: pointer; }
-  .header #butRefresh {
+   #butRefresh {
+    color: #00b5e2;
+    bottom: 20px;
     background: url(https://LXilic.github.io/it202spr2018/projects/p4/images/ic_refresh_white_24px.svg) center center no-repeat; }
-  .header #butAdd {
+   #butAdd {
+    color: #00b5e2;
+    bottom: 20px;
     background: url(https://LXilic.github.io/it202spr2018/projects/p4/images/ic_add_white_24px.svg) center center no-repeat; }
 
 .header__title {

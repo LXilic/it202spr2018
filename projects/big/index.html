@@ -66,6 +66,9 @@
             <li class ="nav-item">
               <a class ="nav-link js-scroll-trigger" href="#home1">Search for schools</a>
               </li>
+           <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#weather">Weather</a>
+            </li>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact us</a>
@@ -591,6 +594,158 @@
  
     </style>
     
+    
+        <!-- Testimonials -->
+    <section id="weather" class="weather">
+      <div class="container-fluid p-0">
+        <div class="row no-gutters">
+
+          <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('http://cdn.atlantamagazine.com/wp-content/uploads/sites/12/2017/07/2017041719_3531MoccasinCreek_026-300x300.jpg');"></div>
+
+  <main class="main">
+        <h1 class="header__title">Weather PWA</h1>
+    <button id="butRefresh" class="headerButton" button class="mdc-button mdc-button--raised mdc-ripple-surface"
+            data-mdc-auto-init="MDCRipple" aria-label="Refresh"> Refresh</button>
+    <button id="butAdd" class="headerButton" button class="mdc-button mdc-button--raised mdc-ripple-surface"
+            data-mdc-auto-init="MDCRipple" aria-label="Add"> Add</button>
+    <div class="card cardTemplate weather-forecast" hidden>
+      <div class="city-key" hidden></div>
+      <div class="card-last-updated" hidden></div>
+      <div class="location"></div>
+      <div class="date"></div>
+      <div class="description"></div>
+      <div class="current">
+        <div class="visual">
+          <div class="icon"></div>
+          <div class="temperature">
+            <span class="value"></span><span class="scale">°F</span>
+          </div>
+        </div>
+        <div class="description">
+          <div class="humidity"></div>
+          <div class="wind">
+            <span class="value"></span>
+            <span class="scale">mph</span>
+            <span class="direction"></span>°
+          </div>
+          <div class="sunrise"></div>
+          <div class="sunset"></div>
+        </div>
+      </div>
+      <div class="future">
+        <div class="oneday">
+          <div class="date"></div>
+          <div class="icon"></div>
+          <div class="temp-high">
+            <span class="value"></span>°
+          </div>
+          <div class="temp-low">
+            <span class="value"></span>°
+          </div>
+        </div>
+        <div class="oneday">
+          <div class="date"></div>
+          <div class="icon"></div>
+          <div class="temp-high">
+            <span class="value"></span>°
+          </div>
+          <div class="temp-low">
+            <span class="value"></span>°
+          </div>
+        </div>
+        <div class="oneday">
+          <div class="date"></div>
+          <div class="icon"></div>
+          <div class="temp-high">
+            <span class="value"></span>°
+          </div>
+          <div class="temp-low">
+            <span class="value"></span>°
+          </div>
+        </div>
+        <div class="oneday">
+          <div class="date"></div>
+          <div class="icon"></div>
+          <div class="temp-high">
+            <span class="value"></span>°
+          </div>
+          <div class="temp-low">
+            <span class="value"></span>°
+          </div>
+        </div>
+        <div class="oneday">
+          <div class="date"></div>
+          <div class="icon"></div>
+          <div class="temp-high">
+            <span class="value"></span>°
+          </div>
+          <div class="temp-low">
+            <span class="value"></span>°
+          </div>
+        </div>
+        <div class="oneday">
+          <div class="date"></div>
+          <div class="icon"></div>
+          <div class="temp-high">
+            <span class="value"></span>°
+          </div>
+          <div class="temp-low">
+            <span class="value"></span>°
+          </div>
+        </div>
+        <div class="oneday">
+          <div class="date"></div>
+          <div class="icon"></div>
+          <div class="temp-high">
+            <span class="value"></span>°
+          </div>
+          <div class="temp-low">
+            <span class="value"></span>°
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="dialog-container">
+    <div class="dialog">
+      <div class="dialog-title">Add new city</div>
+      <div class="dialog-body">
+        <select id="selectCityToAdd">
+          <!-- Values map to Yahoo Weather API Where On Earth Identifiers (WOEIDs).
+               https://developer.yahoo.com/weather/documentation.html#req -->
+          <option value="2357536">Austin, TX</option>
+          <option value="2367105">Boston, MA</option>
+          <option value="2379574">Chicago, IL</option>
+          <option value="2459115">New York, NY</option>
+          <option value="2475687">Portland, OR</option>
+          <option value="2487956">San Francisco, CA</option>
+          <option value="2490383">Seattle, WA</option>
+        </select>
+      </div>
+      <div class="dialog-buttons"></div>
+        <button id="butAddCity" class="button">Add</button>
+        <button id="butAddCancel" class="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="loader">
+    <svg viewBox="0 0 32 32" width="32" height="32">
+      <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
+    </svg>
+  </div>
+    </section>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <!-- Container (Contact Section) -->
     <div id="contact" class="container-fluid bg-grey">
       <h2 class="text-center">CONTACT</h2>
@@ -621,8 +776,9 @@
     </div>
     
     <!-- Add Google Maps -->
-    <div id="googleMap" style="height:400px;width:100%;"></div>
+    <div id="googleMap" style="height:1000px;width:100%;"></div>
     <script>
+    
       function myMap() {
         var myCenter = new google.maps.LatLng(41.8704, -87.6675);
         var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:true, mapTypeId:google.maps.MapTypeId.ROADMAP};
@@ -631,6 +787,9 @@
         marker.setMap(map);
       }
     </script>
+    
+      
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGAWBxG2d21tULVguKZhWRHB1pU5zctmE&callback=myMap"></script>
 
     <!-- Footer -->
