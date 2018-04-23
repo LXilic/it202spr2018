@@ -113,11 +113,11 @@ body {
    #butRefresh {
     color: #00b5e2;
     bottom: 20px;
-    background: url(https://LXilic.github.io/it202spr2018/projects/big/images/nic_refresh_white_24px.svg) center center no-repeat; }
+    background: url(https://LXilic.github.io/it202spr2018/projects/p4/images/ic_refresh_white_24px.svg) center center no-repeat; }
    #butAdd {
     color: #00b5e2;
     bottom: 20px;
-    background: url(https://LXilic.github.io/it202spr2018/projects/big/images/nic_add_white_24px.svg) center center no-repeat; }
+    background: url(https://LXilic.github.io/it202spr2018/projects/p4/images/ic_add_white_24px.svg) center center no-repeat; }
 
 .header__title {
   font-weight: 400;
