@@ -1,7 +1,7 @@
-var cacheName = 'big'; // big
-var dataCacheName = 'big-v1'; // big-v1
+var cacheName = 'weatherPWA-2';
+var dataCacheName = 'weatherData-v1';
 var filesToCache = [
-  '',
+  './',
   'index.html',
   'scripts/app.js',
   'css/inline.css',
