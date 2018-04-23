@@ -4,7 +4,7 @@ var filesToCache = [
   '',
   'index.html',
   'scripts/app.js',
-  'styles/inline.css',
+  'css/inline.css',
   'img/1.png',
   'img/2.png',
   'img/3.png',
