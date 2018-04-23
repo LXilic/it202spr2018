@@ -113,11 +113,11 @@ body {
    #butRefresh {
     color: #00b5e2;
     bottom: 20px;
-    background: url(https://LXilic.github.io/it202spr2018/projects/p4/images/ic_refresh_white_24px.svg) center center no-repeat; }
+    background: url(https://LXilic.github.io/it202spr2018/projects/big/img/nic_refresh_white_24px.svg) center center no-repeat; }
    #butAdd {
     color: #00b5e2;
     bottom: 20px;
-    background: url(https://LXilic.github.io/it202spr2018/projects/p4/images/ic_add_white_24px.svg) center center no-repeat; }
+    background: url(https://LXilic.github.io/it202spr2018/projects/big/img/nic_add_white_24px.svg) center center no-repeat; }
 
 .header__title {
   font-weight: 400;
@@ -329,27 +329,27 @@ body {
   background-repeat: no-repeat;
   background-size: contain; }
   .weather-forecast .icon.clear-day {
-    background-image: url("https://LXilic.github.io/it202spr2018/projects/p4/images/clear.png"); }
+    background-image: url("https://LXilic.github.io/it202spr2018/projects/big/img/clear.png"); }
   .weather-forecast .icon.clear-night {
-    background-image: url("https://LXilic.github.io/it202spr2018/projects/p4/images/clear.png"); }
+    background-image: url("https://LXilic.github.io/it202spr2018/projects/big/img/clear.png"); }
   .weather-forecast .icon.rain {
-    background-image: url("https://LXilic.github.io/it202spr2018/projects/p4/images/rain.png"); }
+    background-image: url("https://LXilic.github.io/it202spr2018/projects/big/img/rain.png"); }
   .weather-forecast .icon.snow {
-    background-image: url("https://LXilic.github.io/it202spr2018/projects/p4/images/snow.png"); }
+    background-image: url("https://LXilic.github.io/it202spr2018/projects/big/img/snow.png"); }
   .weather-forecast .icon.sleet {
-    background-image: url("https://LXilic.github.io/it202spr2018/projects/p4/images/sleet.png"); }
+    background-image: url("https://LXilic.github.io/it202spr2018/projects/big/img/sleet.png"); }
   .weather-forecast .icon.windy {
-    background-image: url("https://LXilic.github.io/it202spr2018/projects/p4/images/wind.png"); }
+    background-image: url("https://LXilic.github.io/it202spr2018/projects/big/img/wind.png"); }
   .weather-forecast .icon.fog {
-    background-image: url("https://LXilic.github.io/it202spr2018/projects/p4/images/fog.png"); }
+    background-image: url("https://LXilic.github.io/it202spr2018/projects/big/img/fog.png"); }
   .weather-forecast .icon.cloudy {
-    background-image: url("https://LXilic.github.io/it202spr2018/projects/p4/images/cloudy.png"); }
+    background-image: url("https://LXilic.github.io/it202spr2018/projects/big/img/cloudy.png"); }
   .weather-forecast .icon.partly-cloudy-day {
-    background-image: url("https://LXilic.github.io/it202spr2018/projects/p4/images/partly-cloudy.png"); }
+    background-image: url("https://LXilic.github.io/it202spr2018/projects/big/img/partly-cloudy.png"); }
   .weather-forecast .icon.partly-cloudy-night {
-    background-image: url("https://LXilic.github.io/it202spr2018/projects/p4/images/partly-cloudy.png"); }
+    background-image: url("https://LXilic.github.io/it202spr2018/projects/big/img/partly-cloudy.png"); }
   .weather-forecast .icon.thunderstorms {
-    background-image: url("https://LXilic.github.io/it202spr2018/projects/p4/images/thunderstorm.png"); }
+    background-image: url("https://LXilic.github.io/it202spr2018/projects/big/img/thunderstorm.png"); }
 
 @media (max-width: 450px) {
   .weather-forecast .date, .weather-forecast .description {
