@@ -262,6 +262,21 @@
               method: 'GET',
             }).done(function(result) {
               
+                      navigator.geolocation.getCurrentPosition(success, error);
+                        
+                        function success(position){
+                            var userLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        
+                            var userMarker = new google.maps.Marker({
+                                position: userLoc,
+                                map: map,
+                                title: "You are here!"
+                            });
+                        }
+                        
+                        function error(){
+                            console.log("Something went wrong...");
+                        }
               var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 12,
                 center: {lat: 41.8781,lng: -87.6298}
@@ -808,6 +823,8 @@ $.ajax({
     $.ajax({
     url: url,
     method: 'GET',
+    
+    
                 
     }).done(function(response) {
             // goes through all the results       
@@ -829,11 +846,6 @@ $.ajax({
    clone.find(".card-body p").text(v.summary_short);
    clone.attr("id", "card" + i);
                         
-          
-  //  Geolocation
-
-          
-                        
   // replace the anchor text
             
       $("#results").append(clone);
@@ -844,13 +856,10 @@ $.ajax({
     throw err;
       });
   }
+  </script>
   // calls the doSearch function
- $("#btnSearch").on("click", doSearch);
+      $("#btnSearch").on("click", doSearch);
         <link
       rel="stylesheet"
       href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
-        
-        
-        </script>
-<script>
 </html>

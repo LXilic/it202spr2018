@@ -17,8 +17,6 @@ var filesToCache = [
   './img/10.png',
   './img/11.png',
   './img/12.png',
-  './img/1.png',
-
 
 ];
 
