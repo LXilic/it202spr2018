@@ -1,24 +1,37 @@
 var cacheName = 'big'; // big
 var dataCacheName = 'big-v1'; // big-v1
 var filesToCache = [
-  './',
-  './index.html',
-  './scripts/app.js',
-  './styles/inline.css',
-  './img/1.png',
-  './img/2.png',
-  './img/3.png',
-  './img/4.png',
-  './img/5.png',
-  './img/6.png',
-  './img/7.png',
-  './img/8.png',
-  './img/9.png',
-  './img/10.png',
-  './img/11.png',
-  './img/12.png',
-
+  '',
+  'index.html',
+  'scripts/app.js',
+  'styles/inline.css',
+  'img/1.png',
+  'img/2.png',
+  'img/3.png',
+  'img/4.png',
+  'img/5.png',
+  'img/6.png',
+  'img/7.png',
+  'img/8.png',
+  'img/9.png',
+  'img/10.png',
+  'img/11.png',
+  'img/12.png',
+  'img/clear.png',
+  'img/cloudy-scattered-showers.png',
+  'img/cloudy.png',
+  'img/fog.png',
+  'img/ic_add_white_24px.svg',
+  'img/ic_refresh_white_24px.svg',
+  'img/partly-cloudy.png',
+  'img/rain.png',
+  'img/scattered-showers.png',
+  'img/sleet.png',
+  'img/snow.png',
+  'img/thunderstorm.png',
+  'img/wind.png'
 ];
+
 
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');

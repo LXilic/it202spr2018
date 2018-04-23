@@ -776,19 +776,7 @@
     </div>
     
     <!-- Add Google Maps -->
-    <div id="googleMap" style="height:1000px;width:100%;"></div>
-    <script>
-    
-      function myMap() {
-        var myCenter = new google.maps.LatLng(41.8704, -87.6675);
-        var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:true, mapTypeId:google.maps.MapTypeId.ROADMAP};
-        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-        var marker = new google.maps.Marker({position:myCenter});
-        marker.setMap(map);
-      }
-    </script>
-    
-      
+
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGAWBxG2d21tULVguKZhWRHB1pU5zctmE&callback=myMap"></script>
 
