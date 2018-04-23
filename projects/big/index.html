@@ -68,7 +68,7 @@
               </li>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#googleMap">Our location</a>
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact us</a>
             </li>
           </ul>
         </div>
@@ -740,7 +740,24 @@ $.ajax({
   throw err;
   
 });
+
+
+
 */
+  	   	$("#start").click(function(){
+	   		if ("geolocation" in navigator) {	
+		
+				navigator.geolocation.getCurrentPosition(function(position) {
+				  	userLocation.lat = position.coords.latitude;
+				  	userLocation.lng = position.coords.longitude;
+				  	flag = true;
+				  	initMap();
+				});
+			} 
+			else
+			  alert("geolocation IS NOT available");
+	   	});
+	   	
   function loadResponse(response) {
       $("#results").append("<p> " + "number of results: " +  response['results'].length + "<p>");
       $.each(response['results'], function(i, val) {
@@ -814,19 +831,7 @@ $.ajax({
                         
           
   //  Geolocation
-  	   	$("#home1").click(function(){
-	   		if ("geolocation" in navigator) {	
-		
-				navigator.geolocation.getCurrentPosition(function(position) {
-				  	userLocation.lat = position.coords.latitude;
-				  	userLocation.lng = position.coords.longitude;
-				  	flag = true;
-				  	initMap();
-				});
-			} 
-			else
-			  alert("geolocation IS NOT available");
-	   	});
+
           
                         
   // replace the anchor text
