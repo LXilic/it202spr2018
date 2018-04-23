@@ -8,6 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="styles/inline.css">
+
+  <link rel="manifest" href="/manifest.json">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="LX Realty">
+
 
     <title>LX REALTY</title>
 
@@ -296,41 +306,7 @@
     </script>
     </section>
 
-
-
-    <!-- Image Showcases -->
-  
-    <section id="showcase" class="showcase">
-      <div class="container-fluid p-0">
-        <div class="row no-gutters">
-
-          <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('http://cdn.atlantamagazine.com/wp-content/uploads/sites/12/2017/07/2017041719_3531MoccasinCreek_026-300x300.jpg');"></div>
-          <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-            <h2>Location ! Location ! Location</h2>
-            <p class="lead mb-0">When you're looking for your new home make sure that it's within the desired school district!</p>
-          </div>
-        </div>
-        <div class="row no-gutters">
-          <div class="col-lg-6 text-white showcase-img" style="background-image: url('http://techloyce.com/wp-content/uploads/2017/02/crm-for-real-estate-agent-techloyce.jpg');"></div>
-          <div class="col-lg-6 my-auto showcase-text">
-            <h2>Responsive Company</h2>
-            <p class="lead mb-0">We take care of our clients like our own family! We are always there for you even when the deal is closed!</p>
-          </div>
-        </div>
-        <div class="row no-gutters">
-          <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('http://cdn.atlantamagazine.com/wp-content/uploads/sites/12/2016/03/0316_realestate_modern01_gcoada_oneuseonly-300x300.jpg');"></div>
-          <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-            <h2>Friendly Staff</h2>
-            <p class="lead mb-0">Our frendly staff will always be there for you!</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials -->
-   </section>
-    
-    <style>
+ <style>
     #btxt {
       color: #00b5e2;
     }
@@ -417,7 +393,6 @@
   }
   .navbar li a, .navbar .navbar-brand { 
       color: #d5d5d5 !important;
-      background-color: black;
   }
   .navbar-nav li a:hover {
       color: #fff !important;
@@ -592,7 +567,7 @@
       margin-top:2px;
       background-color: #333;
       color: ##4286f4;
-      border-radius: 4px;
+      border-radius: 0.3px;
       transition: .7s;
       }
      :root{
@@ -689,7 +664,7 @@
         marker.setMap(map);
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK7PMrvyEjrP7IN-ksE9mdMomDFw5popA&callback=myMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGAWBxG2d21tULVguKZhWRHB1pU5zctmE&callback=myMap"></script>
 
     <!-- Footer -->
     <footer class="footer bg-light">
@@ -742,6 +717,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="scripts/app.js" async></script>
     <script src="js/agency.min.js"></script>
   </body>
 
@@ -836,6 +812,22 @@ $.ajax({
    clone.find(".card-body p").text(v.summary_short);
    clone.attr("id", "card" + i);
                         
+          
+  //  Geolocation
+  	   	$("#home1").click(function(){
+	   		if ("geolocation" in navigator) {	
+		
+				navigator.geolocation.getCurrentPosition(function(position) {
+				  	userLocation.lat = position.coords.latitude;
+				  	userLocation.lng = position.coords.longitude;
+				  	flag = true;
+				  	initMap();
+				});
+			} 
+			else
+			  alert("geolocation IS NOT available");
+	   	});
+          
                         
   // replace the anchor text
             
@@ -852,6 +844,8 @@ $.ajax({
         <link
       rel="stylesheet"
       href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+        
+        
         </script>
 <script>
 </html>
