@@ -1,39 +1,487 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> Lab 21 </title>
-        <link href="https://unpkg.com/material-components-web@0.9.1/dist/material-components-web.min.css" rel="stylesheet">
-    </head>
-    <body>
-<div class="mdc-textfield" data-mdc-auto-init="MDCTextfield">
-  <input class="mdc-textfield__input" type="text" id="input">
-  <label for="input" class="mdc-textfield__label">Input Label</label>
-</div>
-<aside class="mdc-drawer mdc-drawer--temporary mdc-typography">
-  <nav class="mdc-drawer__drawer">
-    <header class="mdc-drawer__header">
-      <div class="mdc-drawer__header-content">
-        Header here
-      </div>
-    </header>
-    <nav id="icon-with-text-demo" class="mdc-drawer__content mdc-list">
-      <a class="mdc-list-item mdc-list-item--activated" href="#">
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>Inbox
-      </a>
-      <a class="mdc-list-item" href="#">
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">star</i>Star
-      </a>
-    </nav>
-  </nav>
-</aside>
-    </body>
-    <script src="https://unpkg.com/material-components-web@0.9.1/dist/material-components-web.js">
- 
-</script>
+  
+  
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <script type="text/javascript">
-         window.mdc.autoInit();
-         let drawer = new mdc.drawer.MDCTemporaryDrawer(document.querySelector('.mdc-drawer--temporary'));
-document.querySelector('.menu').addEventListener('click', () => drawer.open = true);
+    <title>LX REALTY</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <!-- Custom fonts for this template -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/landing-page.min.css" rel="stylesheet">
+    <link href="css/agency.min.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <style>
+    
+      </style>
+  </head>
+
+  <body>
+    </head>
+    <style>
+
+    
+    #btxt {
+      color: #00b5e2;
+    }
+    #container home text-center {
+      bottom: 100px;
+    }
+    #location {
+      color: white;
+    }
+      body {
+        font: 400 15px Lato, sans-serif;
+        line-height: 1.8;
+        color: #818181;
+      }
+      .home{
+      display: none;
+    }
+        .bg-grey {
+        background-color: #f6f6f6;
+      }
+      h2 {
+        font-size: 24px;
+        text-transform: uppercase;
+        color: #303030;
+        font-weight: 600;
+        margin-bottom: 30px;
+      }
+        .bg-1 {
+      background: #2d2d30;
+      color: #bdbdbd;
+  }
+  .bg-1 h3 {color: #fff;}
+  .bg-1 p {font-style: italic;}
+  .list-group-item:first-child {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+  }
+  .list-group-item:last-child {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+  }
+  .thumbnail {
+      padding: 0 0 15px 0;
+      border: none;
+      border-radius: 0;
+  }
+  .thumbnail p {
+      margin-top: 15px;
+      color: #555;
+  }
+  .btn {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #f1f1f1;
+      border-radius: 0;
+      transition: .2s;
+  }
+  .btn:hover, .btn:focus {
+      border: 1px solid #333;
+      background-color: #fff;
+      color: #000;
+  }
+  .modal-header, .close {
+      background-color: #333;
+      color: #fff !important;
+      text-align: center;
+      font-size: 30px;
+  }
+  .modal-header, .modal-body {
+      padding: 40px 50px;
+  }
+  .nav-tabs li a {
+      color: #777;
+  }
+   
+  .navbar {
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      background-color: #2d2d30;
+      border: 0;
+      font-size: 11px !important;
+      letter-spacing: 4px;
+      opacity: 0.9;
+  }
+  .navbar li a, .navbar .navbar-brand { 
+      color: #d5d5d5 !important;
+      background-color: black;
+  }
+  .navbar-nav li a:hover {
+      color: #fff !important;
+      background-color: black;
+  }
+  .navbar-nav li.active a {
+      color: #fff !important;
+      background-color: #29292c !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+      background-color: black;
+      
+  }
+   :root{
+        --mdc-theme-primary: blue;
+      }
+  body{
+    margin-top: 1vh;
+  }
+  .mdc-list{
+    border-color: black;
+    border-style: solid;
+    border-width: 5px;
+  }
+  #map {
+    height:93vh;
+    width: 100%;
+  }
+  #home3{
+   
+  }
+  p{
+    margin-bottom: 0px;
+  }
+  #search_details{
+    padding-top: 50px;
+    
+  }
+  #previous_button{
+    height: 5vh;
+  }
+  #previous_div{
+    border-color: #000000;
+    border-style: solid;
+    border-width:.5vh;
+  }
+  .home{
+  display: none;
+  }
+  .open .dropdown-toggle {
+      color: #fff;
+      background-color: #555 !important;
+      background-color: black;
+   }
+   .dropdown-menu li a {
+      color: #000 !important;
+   }
+   .dropdown-menu li a:hover {
+      background-color: red !important;
+   }
+   .mainNav {
+   background-color: black;
+   }
+    #mainNav {
+   background-color: black;
+   }
+    #container {
+    margin-top:;
+    background-color: black;
+    }
+ 
+ 
+    #home {
+    display: none;
+    background-color: black;
+    }
+    #template {
+    display: none;
+    background-color: black;
+    }
+    #search, #results {
+    padding-left: auto;
+    display: none;
+    background-color: black;
+    }
+    #middle {
+    text-align: center;
+    margin: auto;
+    background-color: black;
+    }
+    
+    .h4, h4 {
+    font-size: 1.5rem;
+    }
+    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+    }
+     :root{
+        --mdc-theme-primary: #00b5e2;
+    }
+    body{
+    margin-top: 1vh;
+    }
+    .mdc-list {
+    border-color: #00b5e2;
+    font-family: calibri;
+    font-color: red;
+    font-size: 15px;
+    border-style: solid;
+    border-width: 2px;
+    }
+    #map {
+    height:93vh;
+    width: 100%;
+    }
+    #home3{
+   
+    }
+    p{
+    margin-bottom: 0px;
+    }
+    #search_details{
+    padding-top: 50px;
+    
+    }
+    #back_button {
+    height: 35px;
+    float: left;
+    }
+
+    #back_div{
+    border-color: #000000;
+    border-style: solid;
+    border-width:.5vh;
+    }
+    .home{
+      display: none;
+    }
+	
+    .mdc-typography--display1 {
+    font-family: calibri;
+    color: #00b5e2;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.125rem;
+    font-color: black
+    background-color: white;
+    line-height: 2.5rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    text-decoration: inherit;
+    text-transform: inherit;
+    background-color: #f8f9fa;
+}
+  .mdc-list {
+    border-color: #00b5e2;
+    font-family: calibri;
+    font-color: red;
+    font-size: 15px;
+    border-style: solid;
+    border-width: 2px;
+}
+     #centered {
+    margin-top: 100px;
+    background-color: black;
+      }
+      .btn {
+      margin-top:2px;
+      background-color: #333;
+      color: ##4286f4;
+      border-radius: 4px;
+      transition: .7s;
+      }
+     :root{
+        --mdc-theme-primary: blue;
+      }
+    .btn:hover, .btn:focus {
+      border: 0px solid #4286f4;
+      background-color: #fff;
+      color: #4286f4;
+    }
+
+    :root{
+        --mdc-theme-primary: #00b5e2;
+    }
+    body{
+     margin-top: 1vh;
+    }
+    
+    #map {
+    height:93vh;
+    width: 100%;
+    }
+    #home3{
+   
+    }
+    p{
+    margin-bottom: 0px;
+    }
+    #search_details{
+    padding-top: 50px;
+    
+    }
+    #back_button {
+    height: 35px;
+    float: left;
+    border-radius: 30px;
+	  transition:0.9s;
+    }
+
+    #back_div{
+    border-color: #000000;
+    border-style: solid;
+    border-width:.5vh;
+    }
+    .home{
+      display: none;
+    }
+	  
+	  #start_button, #done_select_schools {
+	    border-radius: 30px;
+	    transition:0.9s;
+	  }
+   
+ 
+    </style>
+           
+       
+    </style>
+    <body>
+        <div id="Start the search">
+            <h1>Select a Hospital</h1>
+            <select id="type">
+                <option value = "'STI Specialty Clinic'"> STI Specialty Clinic </option>
+                <option value = "'Mental Health Clinic'"> Mental Health Clinic </option>
+                <option value = "'WIC Clinic'"> WIC Clinic </option>
+            </select>
+            <br>
+            <br>
+            <button id="find" class="btn btn-primary">findch</button>
+        </div>
+        <div id='results'></div>
+        <div id="map">
+            
+        </div>
+         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+       
+    <script>
+    
+    var url="https://data.cityofchicago.org/resource/t57k-za2y.json?clinic_type=<clinicType>"
+    
+    function initMap(){
+        $("#find").on("click",function(){
+            $.get(url.replace("<clinicType>",$("#type").val())
+            )
+            .done(function(response){
+              
+                console.log(response)
+                
+                var myCenter={lat:41.878,lng:-87.6298};
+                
+                
+                var map=new google.maps.Map(document.getElementById('map'),{
+                    zoom:12,
+                    
+                    center:myCenter
+                    });
+                $.each(response,function(i,v){
+                  
+                    var name=v.site_name;
+                    var address=v.street_address;
+                    var cityStateZip=v.city+", "+v.state+" "+v.zip;
+                    var phone=v.phone_1;
+                    var hours=v.hours_of_operation;
+                    var type=v.clinic_type;
+                    var ul="list-group";
+                    var li="list-group-item";
+                    var card="<ul class="+ul+">"+
+                                 "<li class="+li+">"+name+"</li>"+
+                                 
+                                 "<li class="+li+">"+address+"</li>"+
+                                 
+                                 "<li class="+li+">"+cityStateZip+"</li>"+
+                                 
+                                 "<li class="+li+">"+phone+"</li>"+
+                                 
+                                 "<li class="+li+">"+hours+"</li>"+
+                                 "</ul>"+"<br>";
+                    $("#results").append(card);
+                    
+                            var contentString = '<div id = "content" style = "color:Black;">'+
+                                                '<div id = "siteNotice">'+
+                                                
+                                                '</div>'+
+                                                
+                                                '<h2 id = "firstHeading" class = "firstHeading">' + name + '</h2>' +
+                                                '<h3 id = " secondHeading" class = "secondHeading">' + address+ '</h3>' +
+                                                '<div id="bodyContent">' +
+                                                
+                                                '<br>'+cityStateZip +'<br>' +
+                                                '<br>' + "Phone: " + phone + '<br>'+"Hours of Operation: "+hours+'<br>'
+                                                '</div>';
+                                                '</div>';
+                            var infoWindow=new google.maps.InfoWindow({
+                                content: contentString
+                            });
+                var markers=new google.maps.Marker({
+                    position:{lat:parseFloat(response[i].latitude),lng:parseFloat(response[i].longitude)},
+                    map:map
+                })
+                markers.addListener('click',function(){
+                    infoWindow.open(map,markers);
+                     });
+                })    
+            })
+        })
+    }
+    
+    
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGe_SZLKVCoEYoh5nVW-yBN6n-6JntgAY&callback=initMap"
+    async defer></script>
+    
+            <!-- Call to Action -->
+    <section id="signup" class="call-to-action text-white text-center">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <h2 class="mb-4">Ready to get started? Sign up now!</h2>
+          </div>
+          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <form>
+              <div class="form-row">
+                <div class="col-12 col-md-9 mb-2 mb-md-0">
+                  <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
+                </div>
+                <div class="col-12 col-md-3">
+                  <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    </body>
 </html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Part-C IT202 Final</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+  </head>
+  <body class="mdc-typography">
+        <h1 class="mdc-typography--display1"></h1>
+        
+        <p class="mdc-typography--body1">English to Serbian translator</p>
+        <textarea rows="10" cols="50" class="mdc-text-field mdc-text-field--textarea"></textarea>
+        <button id="translate" class="mdc-typography--button">Translate English to Serbian</button>
+        <div style="margin-top:25px; padding:25px;" class="mdc-typography--body1" id="translation">
+            
+        </div>
+        <script
+              src="https://code.jquery.com/jquery-3.3.1.min.js"
+              integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+              crossorigin="anonymous"></script>
+        <script>
+            $("#translate").on("click", function() {
+               var url = 'https://translation.googleapis.com/language/translate/v2';
+               url += "?key=AIzaSyD_GQyJPd1uQhmMGQ6h8H0YfAKHHlPW17k";
+               url += "&target=sr&q=" + $("textarea").val();
+               var word = $("textarea").val();
+                $.ajax({
+                    url: url
+                  })
+                  .done(function (response) {
+                      
+                      console.log(response.data.translations[0].translatedText);
+                      $("#translation").text(response.data.translations[0].translatedText);
+                      $("#translation").append(" is ");
+                      
+                      $("#translation").append(word);
+                      $("#translation").append(" in serbian.");
+                      $("#translation").css("font-family", 'Tangerine', serif); //text now in google fonts
+                      $("#translation").css("background-color","silver");
+                  });
+                
+            });
+        </script>
+        
+    </body>
+</html>
